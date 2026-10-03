@@ -1,9 +1,10 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -23,4 +24,7 @@ public class Client {
     String numPermis;
 
     LocalDate dateInscription;
+    @OneToMany(mappedBy = "client")
+    List<Reservation> reservations;
+
 }

@@ -1,7 +1,10 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,4 +18,8 @@ public class Equipement {
     Long idEquipement;
 
     String libelle;
+    @ManyToMany(mappedBy = "equipement")
+    List<Vehicule> vehicule =new ArrayList<>();
+
+
 }

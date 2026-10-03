@@ -1,10 +1,12 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,4 +24,8 @@ public class Contrat {
     BigDecimal montantTotal;
 
     boolean valide;
+    @OneToOne(mappedBy = "contrat")
+    Reservation reservation;
+    @OneToMany(mappedBy = "contrat" , cascade = CascadeType.ALL)
+    List<Payement> payement =new ArrayList<>();
 }

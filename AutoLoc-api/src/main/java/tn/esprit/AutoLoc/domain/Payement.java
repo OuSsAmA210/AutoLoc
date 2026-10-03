@@ -1,4 +1,4 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,5 +23,7 @@ public class Payement {
     LocalDate datePaiement;
     @Enumerated(EnumType.STRING)
     ModePayement modePaiement;
+    @ManyToOne
+    Contrat contrat;
 
 }

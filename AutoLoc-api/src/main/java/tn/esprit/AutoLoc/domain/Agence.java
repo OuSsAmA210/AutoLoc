@@ -1,7 +1,9 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,4 +20,10 @@ public class Agence {
     String ville;
     String adresse;
     String telephone;
+
+    @OneToMany(mappedBy = "agence")
+    List<Employe> employes;
+
+    @OneToMany(mappedBy = "agence")
+    List<Vehicule> vehicules;
 }

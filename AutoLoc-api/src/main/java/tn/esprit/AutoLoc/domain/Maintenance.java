@@ -1,4 +1,4 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,4 +19,6 @@ public class Maintenance {
     LocalDate dateDebut;
     LocalDate dateFin;
     String description;
+    @ManyToOne
+    Vehicule vehicule;
 }

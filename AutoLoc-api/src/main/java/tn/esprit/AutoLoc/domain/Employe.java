@@ -1,24 +1,24 @@
-package tn.esprit.AutoLoc.domaine;
+package tn.esprit.AutoLoc.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Reservation {
+public class Employe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long idReservation;
+    Long idEmploye;
 
-    LocalDate dateDebut;
-    LocalDate dateFin;
+    String nom;
+    String prenom;
 
     @Enumerated(EnumType.STRING)
-    StatutReservation statut;
+    RoleEmploye role;
+    @ManyToOne
+    Agence agence;
 }
