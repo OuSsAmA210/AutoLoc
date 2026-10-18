@@ -9,9 +9,10 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+public class EmployeService implements IEmployeService {
 
-public class EmployeService implements IEmployeService{
     private final EmployeRepository employeRepository;
+
     @Override
     public Employe ajouterEmploye(Employe employe) {
         return employeRepository.save(employe);
@@ -19,22 +20,21 @@ public class EmployeService implements IEmployeService{
 
     @Override
     public Employe modifierEmploye(Employe employe) {
-        return null;
+        return employeRepository.save(employe);
     }
 
     @Override
     public List<Employe> afficherTousEmployes() {
-        return List.of();
+        return employeRepository.findAll();
     }
 
     @Override
     public Employe afficherEmployeById(Long id) {
-        return null;
+        return employeRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerEmploye(Long id) {
-
+        employeRepository.deleteById(id);
     }
-
 }

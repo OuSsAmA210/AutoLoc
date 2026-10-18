@@ -19,16 +19,23 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
 
-    @Column(nullable = false)
     private LocalDate dateDebut;
 
-    @Column(nullable = false)
     private LocalDate dateFin;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 20)
     private StatutReservation statut;
 
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "idClient")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "idVehicule")
+    private Vehicule vehicule;
+
+    @OneToOne(mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private Contrat contrat;
 }

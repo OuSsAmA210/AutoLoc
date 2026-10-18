@@ -9,11 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+public class AgenceService implements IAgenceService {
 
-public class AgenceService implements IAgenceService{
-
-    private final AgenceRepository agenceRepository ;
-
+    private final AgenceRepository agenceRepository;
 
     @Override
     public Agence ajouerAgence(Agence agence) {
@@ -22,24 +20,21 @@ public class AgenceService implements IAgenceService{
 
     @Override
     public Agence modifierAgence(Agence agence) {
-        return null;
+        return agenceRepository.save(agence);
     }
 
     @Override
     public List<Agence> afficherTousAgence() {
-        return List.of();
+        return agenceRepository.findAll();
     }
 
     @Override
     public Agence afficherAgenceById(Long id) {
-        return null;
+        return agenceRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerAgence(Long id) {
-
+        agenceRepository.deleteById(id);
     }
-
-
 }
-

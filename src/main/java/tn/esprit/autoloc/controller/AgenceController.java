@@ -3,28 +3,39 @@ package tn.esprit.autoloc.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.domain.Agence;
-import tn.esprit.autoloc.service.IAgenceService1;
+import tn.esprit.autoloc.service.IAgenceService;
 
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping
+@RequestMapping("/agence")
 public class AgenceController {
-    private final IAgenceService1 agenceService1;
+
+    private final IAgenceService agenceService;
+
     @GetMapping("/afficherToutesAgences")
-    public List<Agence> getAllAgences(){
-        return agenceService1.afficherToutesAgences();
+    public List<Agence> getAllAgences() {
+        return agenceService.afficherTousAgence();
     }
+
+    @GetMapping("/afficherAgence/{id}")
+    public Agence getAgenceById(@PathVariable Long id) {
+        return agenceService.afficherAgenceById(id);
+    }
+
+    @PostMapping("/ajouterAgence")
     public Agence ajouterAgence(@RequestBody Agence agence) {
-        return agenceService1.ajouteragence(agence);
+        return agenceService.ajouerAgence(agence);
     }
+
     @PutMapping("/modifierAgence")
-    public Agence modifierAgence(@RequestBody Agence agence){
-        return agenceService1.modifieragence(agence);
+    public Agence modifierAgence(@RequestBody Agence agence) {
+        return agenceService.modifierAgence(agence);
     }
-    @DeleteMapping("/supprimerAgence/{idAgence}")
-    public void supprimerAgence(@PathVariable Long idAgence){
-        agenceService1.supprimerAgence(idAgence);
+
+    @DeleteMapping("/supprimerAgence/{id}")
+    public void supprimerAgence(@PathVariable Long id) {
+        agenceService.supprimerAgence(id);
     }
 }

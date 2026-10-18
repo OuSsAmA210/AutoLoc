@@ -9,10 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-
 public class ClientService implements IClientService {
 
- private final ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     @Override
     public Client ajouterClient(Client client) {
@@ -21,23 +20,21 @@ public class ClientService implements IClientService {
 
     @Override
     public Client modifierClient(Client client) {
-        return null;
+        return clientRepository.save(client);
     }
 
     @Override
     public List<Client> afficherTousClients() {
-        return List.of();
+        return clientRepository.findAll();
     }
 
     @Override
     public Client afficherClientById(Long id) {
-        return null;
+        return clientRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerClient(Long id) {
-
+        clientRepository.deleteById(id);
     }
-
-
 }

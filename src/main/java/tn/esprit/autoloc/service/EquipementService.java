@@ -9,10 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class EquipementService implements IEquipementService{
+public class EquipementService implements IEquipementService {
 
     private final EquipementRepository equipementRepository;
-
 
     @Override
     public Equipement ajouterEquipement(Equipement equipement) {
@@ -21,22 +20,21 @@ public class EquipementService implements IEquipementService{
 
     @Override
     public Equipement modifierEquipement(Equipement equipement) {
-        return null;
+        return equipementRepository.save(equipement);
     }
 
     @Override
     public List<Equipement> afficherTousEquipement() {
-        return List.of();
+        return equipementRepository.findAll();
     }
 
     @Override
     public Equipement afficherEquipementById(Long id) {
-        return null;
+        return equipementRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerEquipement(Long id) {
-
+        equipementRepository.deleteById(id);
     }
-
 }

@@ -9,10 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+public class MaintenanceService implements IMaintenanceService {
 
-public class MaintenanceService implements IMaintenanceService{
-
-    private final MaintenanceRepository maintenanceRepository ;
+    private final MaintenanceRepository maintenanceRepository;
 
     @Override
     public Maintenance ajouterMaintenace(Maintenance maintenance) {
@@ -21,22 +20,21 @@ public class MaintenanceService implements IMaintenanceService{
 
     @Override
     public Maintenance modifierMaintenance(Maintenance maintenance) {
-        return null;
+        return maintenanceRepository.save(maintenance);
     }
 
     @Override
     public List<Maintenance> afficherTousMaintenance() {
-        return List.of();
+        return maintenanceRepository.findAll();
     }
 
     @Override
     public Maintenance afficherMaintenaceById(Long id) {
-        return null;
+        return maintenanceRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerMaintenance(Long id) {
-
+        maintenanceRepository.deleteById(id);
     }
-
 }

@@ -6,10 +6,12 @@ import tn.esprit.autoloc.domain.Paiement;
 import tn.esprit.autoloc.repository.PaimentRepository;
 
 import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class PaimentService  implements IPaiementService{
-    private final PaimentRepository paimentRepository ;
+public class PaimentService implements IPaiementService {
+
+    private final PaimentRepository paimentRepository;
 
     @Override
     public Paiement ajouterPaiement(Paiement paiement) {
@@ -18,23 +20,21 @@ public class PaimentService  implements IPaiementService{
 
     @Override
     public Paiement modifierPaiment(Paiement paiement) {
-        return null;
+        return paimentRepository.save(paiement);
     }
 
     @Override
     public List<Paiement> afiicherTousPaiement() {
-        return List.of();
+        return paimentRepository.findAll();
     }
 
     @Override
     public Paiement afficherPaiementById(Long id) {
-        return null;
+        return paimentRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerPaiement(Long id) {
-
+        paimentRepository.deleteById(id);
     }
-
-
 }

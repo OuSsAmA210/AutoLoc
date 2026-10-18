@@ -9,36 +9,32 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+public class VehiculeService implements IVehiculeService {
 
-public class VehiculeService implements IVehiculeService{
-
-    private final VehiculeRepository vehiculeRepository ;
+    private final VehiculeRepository vehiculeRepository;
 
     @Override
     public Vehicule ajouterVehicule(Vehicule vehicule) {
-
         return vehiculeRepository.save(vehicule);
     }
 
     @Override
     public Vehicule modifierVehicule(Vehicule vehicule) {
-        return null;
+        return vehiculeRepository.save(vehicule);
     }
 
     @Override
     public List<Vehicule> afficherTousVehicule() {
-        return List.of();
+        return vehiculeRepository.findAll();
     }
 
     @Override
     public Vehicule AfficherVehiculeById(Long id) {
-        return null;
+        return vehiculeRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerVehicule(Long id) {
-
+        vehiculeRepository.deleteById(id);
     }
-
-
 }

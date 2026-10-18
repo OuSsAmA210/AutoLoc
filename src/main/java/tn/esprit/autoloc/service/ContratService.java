@@ -9,10 +9,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class ContratService  implements IContratService {
+public class ContratService implements IContratService {
 
     private final ContratRepository contratRepository;
-
 
     @Override
     public Contrat ajouterContrat(Contrat contrat) {
@@ -21,21 +20,21 @@ public class ContratService  implements IContratService {
 
     @Override
     public Contrat modifierContrat(Contrat contrat) {
-        return null;
+        return contratRepository.save(contrat);
     }
 
     @Override
     public List<Contrat> afficherTousContrats() {
-        return List.of();
+        return contratRepository.findAll();
     }
 
     @Override
     public Contrat afficherContratById(Long id) {
-        return null;
+        return contratRepository.findById(id).orElse(null);
     }
 
     @Override
     public void supprimerContrat(Long id) {
-
+        contratRepository.deleteById(id);
     }
 }
